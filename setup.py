@@ -4,12 +4,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pympesa",
+    name="daraja-mpesa",
     version="0.1",
     author="Tralah M Brian",
     author_email="briantralah@gmail.com",
     description="A Python wrapper for Mpesa Daraja APIs abstracting raw https request",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/TralahM/pympesa",
     packages=setuptools.find_packages(),
     classifiers=(

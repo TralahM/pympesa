@@ -23,7 +23,7 @@ It has been tested with Python 2 & 3
 ### Setup and Installation
 
 ```Bash
-pip install pympesa
+pip install daraja-mpesa
 ```
 You can also clone or download the library package and install it using setuptools:
 ``` bash
