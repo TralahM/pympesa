@@ -20,14 +20,14 @@ sys.path.insert(0, os.path.abspath('../mpesa/'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'mpesa-py'
-copyright = u'2018, Aurlus Ismael Wedava'
-author = u'Aurlus Ismael Wedava'
+project = u'daraja-mpesa'
+copyright = u'2019, Tralah M Brian'
+author = u'Tralah M Brian'
 
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'0.0.1'
+release = u'0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -104,7 +104,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'python-mpesadoc'
+htmlhelp_basename = 'daraja-mpesadoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -131,8 +131,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'mpesa-py.tex', u'mpesa-py Documentation',
-     u'Aurlus Ismael Wedava', 'manual'),
+    (master_doc, 'daraja-mpesa.tex', u'daraja-mpesa Documentation',
+     u'Tralah M Brian', 'manual'),
 ]
 
 
@@ -141,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'mpesa-py', u'mpesa-py Documentation',
+    (master_doc, 'daraja-mpesa', u'daraja-mpesa Documentation',
      [author], 1)
 ]
 
@@ -152,8 +152,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'mpesa-py', u'mpesa-py Documentation',
-     author, 'mpesa-py', 'One line description of project.',
+    (master_doc, 'daraja-mpesa', u'daraja-mpesa Documentation',
+     author, 'daraja-mpesa', 'One line description of project.',
      'Miscellaneous'),
 ]
 
