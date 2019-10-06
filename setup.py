@@ -9,7 +9,7 @@ setuptools.setup(
     author="Tralah M Brian",
     author_email="briantralah@gmail.com",
     description="A Python wrapper for Mpesa Daraja APIs abstracting raw https request",
-    long_description="This library provides thin wrappers around Mpesa Daraja APIs. The APIs supported are Reversal, Transaction Status, Account Balance, B2B, B2C, C2B and MPESA Express",
+    long_description=long_description,
     url="https://github.com/TralahM/pympesa",
     packages=setuptools.find_packages(),
     classifiers=(
