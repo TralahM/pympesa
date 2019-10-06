@@ -42,7 +42,7 @@ pytest
 ### Usage
 
 ``` python
-from pympesa.api.<API> import <API Class>
+from mpesa.api.<API> import <API Class>
 ```
 ***API***
 The following APIs are supported:
