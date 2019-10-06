@@ -4,7 +4,7 @@ sphinx:
 formats:
     - epub
     - pdf
-    - html
+    - htmlzip
 python:
     version: 3.6
     install:
