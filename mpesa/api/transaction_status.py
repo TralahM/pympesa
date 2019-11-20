@@ -15,27 +15,27 @@ class TransactionStatus(MpesaBase):
                                  occassion=None, shortcode=None):
         """This method uses Mpesa's Transaction Status API to check the status of a transaction.
 
-            **Args:**
-                - party_a (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.
-                - identifier_type (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.
-                - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).
-                - initiator (str): This is the credential/username used to authenticate the transaction request.
-                - passcode (str): Get from developer portal
-                - result_url (str): The url that handles information from the mpesa API call.
-                - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.
-                - queue_timeout_url (str): The url that stores information of timed out transactions.
-                - result_url (str): The url that receives results from M-Pesa api call.
-                - shortcode (int): The short code of the organization.
-                - occassion (str):
+        **Args:**
+        - party_a (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.
+        - identifier_type (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.
+        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).
+        - initiator (str): This is the credential/username used to authenticate the transaction request.
+        - passcode (str): Get from developer portal
+        - result_url (str): The url that handles information from the mpesa API call.
+        - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.
+        - queue_timeout_url (str): The url that stores information of timed out transactions.
+        - result_url (str): The url that receives results from M-Pesa api call.
+        - shortcode (int): The short code of the organization.
+        - occassion (str):
 
 
-            **Returns:**
-                - ResultDesc': ,
-                - CheckoutRequestID': ,
-                - ResponseDescription': ,
-                - MerchantRequestID': ,
-                - ResponseCode': ,
-                - ResultCode':
+        **Returns:**
+        - ResultDesc': ,
+        - CheckoutRequestID': ,
+        - ResponseDescription': ,
+        - MerchantRequestID': ,
+        - ResponseCode': ,
+        - ResultCode':
 
 
         """
@@ -64,5 +64,9 @@ class TransactionStatus(MpesaBase):
             base_safaricom_url = self.sandbox_url
         saf_url = "{0}{1}".format(
             base_safaricom_url, "/mpesa/stkpushquery/v1/query")
-        r = requests.post(saf_url, headers=headers, json=payload)
+        try:
+            r = requests.post(saf_url, headers=headers, json=payload)
+        except Exception as e:
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()

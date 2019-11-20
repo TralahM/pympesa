@@ -25,9 +25,9 @@ copyright = u'2019, Tralah M Brian'
 author = u'Tralah M Brian'
 
 # The short X.Y version
-version = u''
+version = u'0.7'
 # The full version, including alpha/beta/rc tags
-release = u'0.1'
+release = u'0.7 beta'
 
 
 # -- General configuration ---------------------------------------------------
@@ -42,10 +42,16 @@ release = u'0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.githubpages',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'sphinx.ext.autosummary',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+autosummary_generate = True
+viewcode_follow_imported_members = True
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -61,7 +67,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -70,6 +76,8 @@ exclude_patterns = [u'_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+numfig = True
+show_authors = True
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -77,10 +85,13 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'classic'
+rigtsidebar = True
+stickysidebar = True
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
+html_show_sphinx = False
 # documentation.
 #
 # html_theme_options = {}
@@ -90,6 +101,7 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+latex_show_urls = 'inline'
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
 #
