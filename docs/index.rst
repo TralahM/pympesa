@@ -1,16 +1,20 @@
-.. python-mpesa documentation master file, created by
-   sphinx-quickstart on Tue Jul 17 11:42:53 2018.
+.. daraja-mpesa documentation master file, created by
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to mpesa-py's documentation!
-========================================
+Welcome to daraja-mpesa's python documentation!
+================================================
 
 .. toctree::
    :maxdepth: 2
 
-   modules <modules.rst>
-   api <api.rst>
+   Overview <overview.rst>
+   Getting Started <getting_started.rst>
+   How To Guides <how_tos.rst>
+   Tutorials <tutorials.rst>
+   Discussions <discussions.rst>
+   Modules <modules.rst>
+   Api Reference <api.rst>
 
 
 Indices and tables
