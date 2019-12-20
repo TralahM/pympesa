@@ -12,10 +12,7 @@
 
 # pympesa.
 
-
-[![TralahM](https://img.shields.io/badge/Developer-TralahM-blue.svg?style=for-the-badge)](https://github.com/TralahM)
-[![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
-
+# Description
 This is an unofficial wrapper providing convenient access to the Safaricom MPESA Daraja API for applications written in Python.
 
 It has been tested with Python 2 & 3
@@ -67,31 +64,36 @@ The following are the corresponding API classes:
  - B2C
 
 
-### Documentation
 
-For more information about the modules and APIs, please see the [documentation](https://pympesa.readthedocs.io/).
+[![TralahM](https://img.shields.io/badge/Engineer-TralahM-blue.svg?style=for-the-badge)](https://github.com/TralahM)
+[![TralahM](https://img.shields.io/badge/Maintainer-TralahM-green.svg?style=for-the-badge)](https://github.com/TralahM)
 
-## Scripts Herein.
+# Documentation
 
-* [setup.py](https://github.com/TralahM/pympesa/blob/master/setup.py)
+[Read the Docs](https://pympesa.readthedocs.io)
+# Dependencies
 
-* [oldRme.md](https://github.com/TralahM/pympesa/blob/master/oldRme.md)
+# How to Install
 
-* [mpesa](https://github.com/TralahM/pympesa/blob/master/mpesa)
 
-* [LICENSE](https://github.com/TralahM/pympesa/blob/master/LICENSE)
+## Building from Source for Developers
 
-* [requirements.txt](https://github.com/TralahM/pympesa/blob/master/requirements.txt)
+```Bash
+git clone https://github.com/TralahM/pympesa.git
+cd pympesa
+```
 
-* [CONTRIBUTING.rst](https://github.com/TralahM/pympesa/blob/master/CONTRIBUTING.rst)
+# Contributing
+![See the Contributing File](CONTRIBUTING.rst)
+![See the Pull Request File](PULL_REQUEST_TEMPLATE.md)
 
-* [README.md](https://github.com/TralahM/pympesa/blob/master/README.md)
 
-* [docs](https://github.com/TralahM/pympesa/blob/master/docs)
+# Support
 
-* [CODE_OF_CONDUCT.md](https://github.com/TralahM/pympesa/blob/master/CODE_OF_CONDUCT.md)
+# LICENCE
+![Read the license here](LICENSE)
 
-# Contributors.
 
-* [TralahTek](https://github.com/TralahTek)
-* [TralahM](https://github.com/TralahM)
+# Acknowledgements
+
+
