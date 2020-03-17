@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="daraja-mpesa",
-    version="1.0",
+    version="1.1",
     author="Tralah M Brian",
     author_email="briantralah@gmail.com",
     description="A Python wrapper for Mpesa Daraja APIs abstracting raw https request",
