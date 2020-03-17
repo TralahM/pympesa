@@ -19,13 +19,20 @@ class MpesaBase:
         of your app's client key and client secret.
 
             **Args:**
+
                 - env (str): Current app environment. Options: sandbox, live.
+
                 - app_key (str): The app key obtained from the developer portal.
+
                 - app_secret (str): The app key obtained from the developer portal.
+
                 - sandbox_url (str): Base Safaricom sandbox url.
+
                 - live_url (str): Base Safaricom live url.
 
+
             **Returns:**
+
                 - access_token (str): This token is to be used with the Bearer header for further API calls to Mpesa.
 
             """
