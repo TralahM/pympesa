@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>api.mpesa_express &#8212; daraja-mpesa 0.7 beta documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">daraja-mpesa 0.7 beta documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for api.mpesa_express</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">.auth</span> <span class="k">import</span> <span class="n">MpesaBase</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+
+<div class="viewcode-block" id="MpesaExpress"><a class="viewcode-back" href="../../api.html#api.mpesa_express.MpesaExpress">[docs]</a><span class="k">class</span> <span class="nc">MpesaExpress</span><span class="p">(</span><span class="n">MpesaBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span> <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">):</span>
+        <span class="n">MpesaBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">app_key</span><span class="p">,</span> <span class="n">app_secret</span><span class="p">,</span>
+                           <span class="n">sandbox_url</span><span class="p">,</span> <span class="n">live_url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MpesaExpress.stk_push"><a class="viewcode-back" href="../../api.html#api.mpesa_express.MpesaExpress.stk_push">[docs]</a>    <span class="k">def</span> <span class="nf">stk_push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">business_shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">passcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reference_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">phone_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s Express API to initiate online payment on behalf of a customer..</span>
+
+<span class="sd">        **Args:**</span>
+<span class="sd">        - business_shortcode (int): The short code of the organization.</span>
+<span class="sd">        - passcode (str): Get from developer portal</span>
+<span class="sd">        - amount (int): The amount being transacted</span>
+<span class="sd">        - callback_url (str): A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.</span>
+<span class="sd">        - reference_code: Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier of the transaction for CustomerPayBillOnline transaction type.</span>
+<span class="sd">        - phone_number: The Mobile Number to receive the STK Pin Prompt.</span>
+<span class="sd">        - description: This is any additional information/comment that can be sent along with the request from your system. MAX 13 characters</span>
+
+
+<span class="sd">        **Returns:**</span>
+<span class="sd">        - CustomerMessage (str):</span>
+<span class="sd">        - CheckoutRequestID (str):</span>
+<span class="sd">        - ResponseDescription (str):</span>
+<span class="sd">        - MerchantRequestID (str):</span>
+<span class="sd">        - ResponseCode (str):</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">business_shortcode</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">passcode</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;BusinessShortCode&quot;</span><span class="p">:</span> <span class="n">business_shortcode</span><span class="p">,</span>
+            <span class="s2">&quot;Password&quot;</span><span class="p">:</span> <span class="n">encoded</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;Timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+            <span class="s2">&quot;TransactionType&quot;</span><span class="p">:</span> <span class="s2">&quot;CustomerPayBillOnline&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+            <span class="s2">&quot;PartyA&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">phone_number</span><span class="p">),</span>
+            <span class="s2">&quot;PartyB&quot;</span><span class="p">:</span> <span class="n">business_shortcode</span><span class="p">,</span>
+            <span class="s2">&quot;PhoneNumber&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">phone_number</span><span class="p">),</span>
+            <span class="s2">&quot;CallBackURL&quot;</span><span class="p">:</span> <span class="n">callback_url</span><span class="p">,</span>
+            <span class="s2">&quot;AccountReference&quot;</span><span class="p">:</span> <span class="n">reference_code</span><span class="p">,</span>
+            <span class="s2">&quot;TransactionDesc&quot;</span><span class="p">:</span> <span class="n">description</span>
+        <span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
+            <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span>
+        <span class="n">saf_url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">base_safaricom_url</span><span class="p">,</span> <span class="s2">&quot;/mpesa/stkpush/v1/processrequest&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saf_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saf_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                              <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MpesaExpress.query"><a class="viewcode-back" href="../../api.html#api.mpesa_express.MpesaExpress.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">business_shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">checkout_request_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">passcode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s Express API to check the status of a Lipa Na M-Pesa Online Payment..</span>
+
+<span class="sd">        **Args:**</span>
+<span class="sd">        - business_shortcode (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.</span>
+<span class="sd">        - checkout_request_id (str): This is a global unique identifier of the processed checkout transaction request.</span>
+<span class="sd">        - passcode (str): Get from developer portal</span>
+
+
+<span class="sd">        **Returns:**</span>
+<span class="sd">        - CustomerMessage (str):</span>
+<span class="sd">        - CheckoutRequestID (str):</span>
+<span class="sd">        - ResponseDescription (str):</span>
+<span class="sd">        - MerchantRequestID (str):</span>
+<span class="sd">        - ResponseCode (str):</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">business_shortcode</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">passcode</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;BusinessShortCode&quot;</span><span class="p">:</span> <span class="n">business_shortcode</span><span class="p">,</span>
+            <span class="s2">&quot;Password&quot;</span><span class="p">:</span> <span class="n">encoded</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;Timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+            <span class="s2">&quot;CheckoutRequestID&quot;</span><span class="p">:</span> <span class="n">checkout_request_id</span>
+        <span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
+            <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sandbox_url</span>
+        <span class="n">saf_url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">base_safaricom_url</span><span class="p">,</span> <span class="s2">&quot;/mpesa/stkpushquery/v1/query&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saf_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">saf_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                              <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">daraja-mpesa 0.7 beta documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tralah M Brian.
+    </div>
+  </body>
+</html>
