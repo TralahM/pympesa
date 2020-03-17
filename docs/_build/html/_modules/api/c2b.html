@@ -51,16 +51,25 @@
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s C2B API to register validation and confirmation URLs on M-Pesa.</span>
 
 <span class="sd">        **Args:**</span>
+
 <span class="sd">        - shortcode (int): The short code of the organization.</span>
+
 <span class="sd">        - response_type (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.</span>
+
 <span class="sd">        - confirmation_url (str): Confirmation URL for the client.</span>
+
 <span class="sd">        - validation_url (str): Validation URL for the client.</span>
 
 
+
 <span class="sd">        **Returns:**</span>
+
 <span class="sd">        - OriginatorConversationID (str): The unique request ID for tracking a transaction.</span>
+
 <span class="sd">        - ConversationID (str): The unique request ID returned by mpesa for each request made</span>
+
 <span class="sd">        - ResponseDescription (str): Response Description message</span>
+
 
 
 <span class="sd">        &quot;&quot;&quot;</span>

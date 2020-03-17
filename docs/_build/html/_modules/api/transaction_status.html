@@ -55,26 +55,45 @@
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s Transaction Status API to check the status of a transaction.</span>
 
 <span class="sd">        **Args:**</span>
+
 <span class="sd">        - party_a (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.</span>
+
 <span class="sd">        - identifier_type (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.</span>
+
 <span class="sd">        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</span>
+
 <span class="sd">        - initiator (str): This is the credential/username used to authenticate the transaction request.</span>
+
 <span class="sd">        - passcode (str): Get from developer portal</span>
+
 <span class="sd">        - result_url (str): The url that handles information from the mpesa API call.</span>
+
 <span class="sd">        - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.</span>
+
 <span class="sd">        - queue_timeout_url (str): The url that stores information of timed out transactions.</span>
+
 <span class="sd">        - result_url (str): The url that receives results from M-Pesa api call.</span>
+
 <span class="sd">        - shortcode (int): The short code of the organization.</span>
+
 <span class="sd">        - occassion (str):</span>
 
 
+
 <span class="sd">        **Returns:**</span>
+
 <span class="sd">        - ResultDesc&#39;: ,</span>
+
 <span class="sd">        - CheckoutRequestID&#39;: ,</span>
+
 <span class="sd">        - ResponseDescription&#39;: ,</span>
+
 <span class="sd">        - MerchantRequestID&#39;: ,</span>
+
 <span class="sd">        - ResponseCode&#39;: ,</span>
+
 <span class="sd">        - ResultCode&#39;:</span>
+
 
 
 <span class="sd">        &quot;&quot;&quot;</span>
