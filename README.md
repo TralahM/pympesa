@@ -81,17 +81,20 @@ The following are the corresponding API classes:
 ```Bash
 git clone https://github.com/TralahM/pympesa.git
 cd pympesa
+python setupy bdist_wheel
+python setupy install
 ```
 
 # Contributing
-![See the Contributing File](CONTRIBUTING.rst)
-![See the Pull Request File](PULL_REQUEST_TEMPLATE.md)
+[See the Contributing File](CONTRIBUTING.rst)
 
+
+[See the Pull Request File](PULL_REQUEST_TEMPLATE.md)
 
 # Support
 
 # LICENCE
-![Read the license here](LICENSE)
+[Read the license here](LICENSE)
 
 
 # Acknowledgements
