@@ -44,64 +44,86 @@
 
 
 <div class="viewcode-block" id="TransactionStatus"><a class="viewcode-back" href="../../api.html#api.transaction_status.TransactionStatus">[docs]</a><span class="k">class</span> <span class="nc">TransactionStatus</span><span class="p">(</span><span class="n">MpesaBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span> <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span>
+        <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span>
+        <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">MpesaBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">app_key</span><span class="p">,</span> <span class="n">app_secret</span><span class="p">,</span>
                            <span class="n">sandbox_url</span><span class="p">,</span> <span class="n">live_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
 
-<div class="viewcode-block" id="TransactionStatus.check_transaction_status"><a class="viewcode-back" href="../../api.html#api.transaction_status.TransactionStatus.check_transaction_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_transaction_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">party_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">passcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                 <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transaction_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                 <span class="n">occassion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="TransactionStatus.check_transaction_status"><a class="viewcode-back" href="../../api.html#api.transaction_status.TransactionStatus.check_transaction_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_transaction_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">party_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">passcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">transaction_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">occassion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s Transaction Status API to check the status of a transaction.</span>
 
 <span class="sd">        **Args:**</span>
 
-<span class="sd">        - party_a (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.</span>
+<span class="sd">        - `party_a` (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.</span>
 
-<span class="sd">        - identifier_type (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.</span>
+<span class="sd">        - `identifier_type` (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.</span>
 
-<span class="sd">        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</span>
+<span class="sd">        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).</span>
 
-<span class="sd">        - initiator (str): This is the credential/username used to authenticate the transaction request.</span>
+<span class="sd">        - `initiator` (str): This is the credential/username used to authenticate the transaction request.</span>
 
-<span class="sd">        - passcode (str): Get from developer portal</span>
+<span class="sd">        - `passcode` (str): Get from developer portal</span>
 
-<span class="sd">        - result_url (str): The url that handles information from the mpesa API call.</span>
+<span class="sd">        - `result_url` (str): The url that handles information from the mpesa API call.</span>
 
-<span class="sd">        - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.</span>
+<span class="sd">        - `transaction_id` (str): Unique identifier to identify a transaction on M-Pesa.</span>
 
-<span class="sd">        - queue_timeout_url (str): The url that stores information of timed out transactions.</span>
+<span class="sd">        - `queue_timeout_url` (str): The url that stores information of timed out transactions.</span>
 
-<span class="sd">        - result_url (str): The url that receives results from M-Pesa api call.</span>
+<span class="sd">        - `result_url` (str): The url that receives results from M-Pesa api call.</span>
 
-<span class="sd">        - shortcode (int): The short code of the organization.</span>
+<span class="sd">        - `shortcode` (int): The short code of the organization.</span>
 
-<span class="sd">        - occassion (str):</span>
+<span class="sd">        - `occassion` (str):</span>
 
 
 
 <span class="sd">        **Returns:**</span>
 
-<span class="sd">        - ResultDesc&#39;: ,</span>
+<span class="sd">        - `ResultDesc`: ,</span>
 
-<span class="sd">        - CheckoutRequestID&#39;: ,</span>
+<span class="sd">        - `CheckoutRequestID`: ,</span>
 
-<span class="sd">        - ResponseDescription&#39;: ,</span>
+<span class="sd">        - `ResponseDescription`: ,</span>
 
-<span class="sd">        - MerchantRequestID&#39;: ,</span>
+<span class="sd">        - `MerchantRequestID`: ,</span>
 
-<span class="sd">        - ResponseCode&#39;: ,</span>
+<span class="sd">        - `ResponseCode`: ,</span>
 
-<span class="sd">        - ResultCode&#39;:</span>
+<span class="sd">        - `ResultCode`:</span>
 
 
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
-            <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+            <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}{1}{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">shortcode</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">passcode</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
-        <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
         <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;CommandID&quot;</span><span class="p">:</span> <span class="s2">&quot;TransactionStatusQuery&quot;</span><span class="p">,</span>
             <span class="s2">&quot;PartyA&quot;</span><span class="p">:</span> <span class="n">party_a</span><span class="p">,</span>
@@ -112,10 +134,12 @@
             <span class="s2">&quot;QueueTimeOutURL&quot;</span><span class="p">:</span> <span class="n">queue_timeout_url</span><span class="p">,</span>
             <span class="s2">&quot;ResultURL&quot;</span><span class="p">:</span> <span class="n">result_url</span><span class="p">,</span>
             <span class="s2">&quot;TransactionID&quot;</span><span class="p">:</span> <span class="n">transaction_id</span><span class="p">,</span>
-            <span class="s2">&quot;Occasion&quot;</span><span class="p">:</span> <span class="n">occassion</span>
+            <span class="s2">&quot;Occasion&quot;</span><span class="p">:</span> <span class="n">occassion</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
             <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
         <span class="k">else</span><span class="p">:</span>

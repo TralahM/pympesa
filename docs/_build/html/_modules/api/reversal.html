@@ -42,49 +42,67 @@
 
 
 <div class="viewcode-block" id="Reversal"><a class="viewcode-back" href="../../api.html#api.reversal.Reversal">[docs]</a><span class="k">class</span> <span class="nc">Reversal</span><span class="p">(</span><span class="n">MpesaBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span> <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span>
+        <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span>
+        <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">MpesaBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">app_key</span><span class="p">,</span> <span class="n">app_secret</span><span class="p">,</span>
                            <span class="n">sandbox_url</span><span class="p">,</span> <span class="n">live_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Reversal.reverse"><a class="viewcode-back" href="../../api.html#api.reversal.Reversal.reverse">[docs]</a>    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">security_credential</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">command_id</span><span class="o">=</span><span class="s2">&quot;TransactionReversal&quot;</span><span class="p">,</span> <span class="n">transaction_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">receiver_party</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">receiver_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">occassion</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Reversal.reverse"><a class="viewcode-back" href="../../api.html#api.reversal.Reversal.reverse">[docs]</a>    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">security_credential</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">command_id</span><span class="o">=</span><span class="s2">&quot;TransactionReversal&quot;</span><span class="p">,</span>
+        <span class="n">transaction_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">receiver_party</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">receiver_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">occassion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s Transaction Reversal API to reverse a M-Pesa transaction.</span>
 
 <span class="sd">        **Args:**</span>
 
-<span class="sd">        - initiator (str): Username used to authenticate the transaction.</span>
+<span class="sd">        - `initiator` (str): Username used to authenticate the transaction.</span>
 
-<span class="sd">        - security_credential (str): Generate from developer portal</span>
+<span class="sd">        - `security_credential` (str): Generate from developer portal</span>
 
-<span class="sd">        - command_id (str): TransactionReversal</span>
+<span class="sd">        - `command_id` (str): TransactionReversal</span>
 
-<span class="sd">        - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.</span>
+<span class="sd">        - `transaction_id` (str): Unique identifier to identify a transaction on M-Pesa.</span>
 
-<span class="sd">        - amount (int): The amount being transacted</span>
+<span class="sd">        - `amount` (int): The amount being transacted</span>
 
-<span class="sd">        - receiver_party (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</span>
+<span class="sd">        - `receiver_party` (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</span>
 
-<span class="sd">        - receiver_identifier_type (int): MSISDN receiving the transaction (12 digits).</span>
+<span class="sd">        - `receiver_identifier_type` (int): MSISDN receiving the transaction (12 digits).</span>
 
-<span class="sd">        - queue_timeout_url (str): The url that handles information of timed out transactions.</span>
+<span class="sd">        - `queue_timeout_url` (str): The url that handles information of timed out transactions.</span>
 
-<span class="sd">        - result_url (str): The url that receives results from M-Pesa api call.</span>
+<span class="sd">        - `result_url` (str): The url that receives results from M-Pesa api call.</span>
 
-<span class="sd">        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters)</span>
+<span class="sd">        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters)</span>
 
-<span class="sd">        - occassion (str):</span>
+<span class="sd">        - `occassion` (str):</span>
 
 
 
 <span class="sd">        **Returns:**</span>
 
-<span class="sd">        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.</span>
+<span class="sd">        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.</span>
 
-<span class="sd">        - ConversationID (str): The unique request ID returned by mpesa for each request made</span>
+<span class="sd">        - `ConversationID` (str): The unique request ID returned by mpesa for each request made</span>
 
-<span class="sd">        - ResponseDescription (str): Response Description message</span>
+<span class="sd">        - `ResponseDescription` (str): Response Description message</span>
 
 
 
@@ -101,10 +119,12 @@
             <span class="s2">&quot;QueueTimeOutURL&quot;</span><span class="p">:</span> <span class="n">queue_timeout_url</span><span class="p">,</span>
             <span class="s2">&quot;ResultURL&quot;</span><span class="p">:</span> <span class="n">result_url</span><span class="p">,</span>
             <span class="s2">&quot;Remarks&quot;</span><span class="p">:</span> <span class="n">remarks</span><span class="p">,</span>
-            <span class="s2">&quot;Occassion&quot;</span><span class="p">:</span> <span class="n">occassion</span>
+            <span class="s2">&quot;Occassion&quot;</span><span class="p">:</span> <span class="n">occassion</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
             <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
         <span class="k">else</span><span class="p">:</span>

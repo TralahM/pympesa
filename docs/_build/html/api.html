@@ -62,17 +62,17 @@ of your app’s client key and client secret.</p>
 <div><p><strong>Args:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>env (str): Current app environment. Options: sandbox, live.</p></li>
-<li><p>app_key (str): The app key obtained from the developer portal.</p></li>
-<li><p>app_secret (str): The app key obtained from the developer portal.</p></li>
-<li><p>sandbox_url (str): Base Safaricom sandbox url.</p></li>
-<li><p>live_url (str): Base Safaricom live url.</p></li>
+<li><p><cite>env</cite> (str): Current app environment. Options: sandbox, live.</p></li>
+<li><p><cite>app_key</cite> (str): The app key obtained from the developer portal.</p></li>
+<li><p><cite>app_secret</cite> (str): The app key obtained from the developer portal.</p></li>
+<li><p><cite>sandbox_url</cite> (str): Base Safaricom sandbox url.</p></li>
+<li><p><cite>live_url</cite> (str): Base Safaricom live url.</p></li>
 </ul>
 </div></blockquote>
 <p><strong>Returns:</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>access_token (str): This token is to be used with the Bearer header for further API calls to Mpesa.</p></li>
+<li><p><cite>access_token</cite> (str): This token is to be used with the Bearer header for further API calls to Mpesa.</p></li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -93,24 +93,24 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s B2B API to transact from one company to another.</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>initiator (str): Username used to authenticate the transaction.</p></li>
-<li><p>security_credential (str): Generate from developer portal</p></li>
-<li><p>command_id (str): Options: BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility, BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer, MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance</p></li>
-<li><p>sender_identifier_type (str): 2 for Till Number, 4 for organization shortcode</p></li>
-<li><p>receiver_identifier_type (str): # 2 for Till Number, 4 for organization shortcode</p></li>
-<li><p>amount(str): Amount.</p></li>
-<li><p>party_a (int): Sender shortcode.</p></li>
-<li><p>party_b (int): Receiver shortcode.</p></li>
-<li><p>remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
-<li><p>account_reference (str): Use if doing paybill to banks etc.</p></li>
-<li><p>queue_timeout_url (str): The url that handles information of timed out transactions.</p></li>
-<li><p>result_url (str): The url that receives results from M-Pesa api call.</p></li>
+<li><p><cite>initiator</cite> (str): Username used to authenticate the transaction.</p></li>
+<li><p><cite>security_credential</cite> (str): Generate from developer portal</p></li>
+<li><p><cite>command_id</cite> (str): Options: BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility, BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer, MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance</p></li>
+<li><p><cite>sender_identifier_type</cite> (str): 2 for Till Number, 4 for organization shortcode</p></li>
+<li><p><cite>receiver_identifier_type</cite> (str): # 2 for Till Number, 4 for organization shortcode</p></li>
+<li><p><cite>amount</cite> (str): Amount.</p></li>
+<li><p><cite>party_a</cite> (int): Sender shortcode.</p></li>
+<li><p><cite>party_b</cite> (int): Receiver shortcode.</p></li>
+<li><p><cite>remarks</cite> (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
+<li><p><cite>account_reference</cite> (str): Use if doing paybill to banks etc.</p></li>
+<li><p><cite>queue_timeout_url</cite> (str): The url that handles information of timed out transactions.</p></li>
+<li><p><cite>result_url</cite> (str): The url that receives results from M-Pesa api call.</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>OriginatorConverstionID (str): The unique request ID for tracking a transaction.</p></li>
-<li><p>ConversationID (str): The unique request ID returned by mpesa for each request made</p></li>
-<li><p>ResponseDescription (str): Response Description message</p></li>
+<li><p><cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
 </ul>
 </dd></dl>
 
@@ -129,23 +129,23 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s B2C API to transact between an M-Pesa short code to a phone number registered on M-Pesa..</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>initiator_name (str): Username used to authenticate the transaction.</p></li>
-<li><p>security_credential (str): Generate from developer portal</p></li>
-<li><p>command_id (str): Options: SalaryPayment, BusinessPayment, PromotionPayment</p></li>
-<li><p>amount(str): Amount.</p></li>
-<li><p>party_a (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</p></li>
-<li><p>party_b (int): MSISDN receiving the transaction (12 digits).</p></li>
-<li><p>remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
-<li><p>account_reference (str): Use if doing paybill to banks etc.</p></li>
-<li><p>queue_timeout_url (str): The url that handles information of timed out transactions.</p></li>
-<li><p>result_url (str): The url that receives results from M-Pesa api call.</p></li>
-<li><p>ocassion (str):</p></li>
+<li><p><cite>initiator_name</cite> (str): Username used to authenticate the transaction.</p></li>
+<li><p><cite>security_credential</cite> (str): Generate from developer portal</p></li>
+<li><p><cite>command_id</cite> (str): Options: SalaryPayment, BusinessPayment, PromotionPayment</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`</span></a>amount`(str): Amount.</p></li>
+<li><p><cite>party_a</cite> (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</p></li>
+<li><p><cite>party_b</cite> (int): MSISDN receiving the transaction (12 digits).</p></li>
+<li><p><cite>remarks</cite> (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
+<li><p><cite>account_reference</cite> (str): Use if doing paybill to banks etc.</p></li>
+<li><p><cite>queue_timeout_url</cite> (str): The url that handles information of timed out transactions.</p></li>
+<li><p><cite>result_url</cite> (str): The url that receives results from M-Pesa api call.</p></li>
+<li><p><cite>ocassion</cite> (str):</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>OriginatorConverstionID (str): The unique request ID for tracking a transaction.</p></li>
-<li><p>ConversationID (str): The unique request ID returned by mpesa for each request made</p></li>
-<li><p>ResponseDescription (str): Response Description message</p></li>
+<li><p><cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
 </ul>
 </dd></dl>
 
@@ -164,20 +164,20 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s Account Balance API to to enquire the balance on an M-Pesa BuyGoods (Till Number).</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>initiator (str): Username used to authenticate the transaction.</p></li>
-<li><p>security_credential (str): Generate from developer portal.</p></li>
-<li><p>command_id (str): AccountBalance.</p></li>
-<li><p>party_a (int): Till number being queried.</p></li>
-<li><p>identifier_type (int): Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code</p></li>
-<li><p>remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
-<li><p>queue_timeout_url (str): The url that handles information of timed out transactions.</p></li>
-<li><p>result_url (str): The url that receives results from M-Pesa api call.</p></li>
+<li><p><cite>initiator</cite> (str): Username used to authenticate the transaction.</p></li>
+<li><p><cite>security_credential</cite> (str): Generate from developer portal.</p></li>
+<li><p><cite>command_id</cite> (str): AccountBalance.</p></li>
+<li><p><cite>party_a</cite> (int): Till number being queried.</p></li>
+<li><p><cite>identifier_type</cite> (int): Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code</p></li>
+<li><p><cite>remarks</cite> (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
+<li><p><cite>queue_timeout_url</cite> (str): The url that handles information of timed out transactions.</p></li>
+<li><p><cite>result_url</cite> (str): The url that receives results from M-Pesa api call.</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>OriginatorConverstionID (str): The unique request ID for tracking a transaction.</p></li>
-<li><p>ConversationID (str): The unique request ID returned by mpesa for each request made</p></li>
-<li><p>ResponseDescription (str): Response Description message</p></li>
+<li><p><cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
 </ul>
 </dd></dl>
 
@@ -196,16 +196,16 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s C2B API to register validation and confirmation URLs on M-Pesa.</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>shortcode (int): The short code of the organization.</p></li>
-<li><p>response_type (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.</p></li>
-<li><p>confirmation_url (str): Confirmation URL for the client.</p></li>
-<li><p>validation_url (str): Validation URL for the client.</p></li>
+<li><p><cite>shortcode</cite> (int): The short code of the organization.</p></li>
+<li><p><cite>response_type</cite> (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.</p></li>
+<li><p><cite>confirmation_url</cite> (str): Confirmation URL for the client.</p></li>
+<li><p><cite>validation_url</cite> (str): Validation URL for the client.</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>OriginatorConversationID (str): The unique request ID for tracking a transaction.</p></li>
-<li><p>ConversationID (str): The unique request ID returned by mpesa for each request made</p></li>
-<li><p>ResponseDescription (str): Response Description message</p></li>
+<li><p><cite>OriginatorConversationID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
 </ul>
 </dd></dl>
 
@@ -214,15 +214,15 @@ of your app’s client key and client secret.</p>
 <code class="sig-name descname">simulate</code><span class="sig-paren">(</span><em class="sig-param">shortcode=None</em>, <em class="sig-param">command_id=None</em>, <em class="sig-param">amount=None</em>, <em class="sig-param">msisdn=None</em>, <em class="sig-param">bill_ref_number=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/api/c2b.html#C2B.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#api.c2b.C2B.simulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method uses Mpesa’s C2B API to simulate a C2B transaction.</p>
 <p><strong>Args:</strong>
-- shortcode (int): The short code of the organization.
-- command_id (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
-- amount (int): The amount being transacted
-- msisdn (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
-- bill_ref_number: Optional</p>
+- <cite>shortcode</cite> (int): The short code of the organization.
+- <cite>command_id</cite> (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+- <cite>amount</cite> (int): The amount being transacted
+- <cite>msisdn</cite> (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+- <cite>bill_ref_number</cite>: Optional</p>
 <p><strong>Returns:</strong>
-- OriginatorConverstionID (str): The unique request ID for tracking a transaction.
-- ConversationID (str): The unique request ID returned by mpesa for each request made
-- ResponseDescription (str): Response Description message</p>
+- <cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.
+- <cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made
+- <cite>ResponseDescription</cite> (str): Response Description message</p>
 </dd></dl>
 
 </dd></dl>
@@ -239,15 +239,15 @@ of your app’s client key and client secret.</p>
 <code class="sig-name descname">query</code><span class="sig-paren">(</span><em class="sig-param">business_shortcode=None</em>, <em class="sig-param">checkout_request_id=None</em>, <em class="sig-param">passcode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/api/mpesa_express.html#MpesaExpress.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#api.mpesa_express.MpesaExpress.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method uses Mpesa’s Express API to check the status of a Lipa Na M-Pesa Online Payment..</p>
 <p><strong>Args:</strong>
-- business_shortcode (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
-- checkout_request_id (str): This is a global unique identifier of the processed checkout transaction request.
-- passcode (str): Get from developer portal</p>
+- <cite>business_shortcode</cite> (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
+- <cite>checkout_request_id</cite> (str): This is a global unique identifier of the processed checkout transaction request.
+- <cite>passcode</cite> (str): Get from developer portal</p>
 <p><strong>Returns:</strong>
-- CustomerMessage (str):
-- CheckoutRequestID (str):
-- ResponseDescription (str):
-- MerchantRequestID (str):
-- ResponseCode (str):</p>
+- <cite>CustomerMessage</cite> (str):
+- <cite>CheckoutRequestID</cite> (str):
+- <cite>ResponseDescription</cite> (str):
+- <cite>MerchantRequestID</cite> (str):
+- <cite>ResponseCode</cite> (str):</p>
 </dd></dl>
 
 <dl class="method">
@@ -256,21 +256,21 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s Express API to initiate online payment on behalf of a customer..</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>business_shortcode (int): The short code of the organization.</p></li>
-<li><p>passcode (str): Get from developer portal</p></li>
-<li><p>amount (int): The amount being transacted</p></li>
-<li><p>callback_url (str): A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.</p></li>
-<li><p>reference_code: Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier of the transaction for CustomerPayBillOnline transaction type.</p></li>
-<li><p>phone_number: The Mobile Number to receive the STK Pin Prompt.</p></li>
-<li><p>description: This is any additional information/comment that can be sent along with the request from your system. MAX 13 characters</p></li>
+<li><p><cite>business_shortcode</cite> (int): The short code of the organization.</p></li>
+<li><p><cite>passcode</cite> (str): Get from developer portal</p></li>
+<li><p><cite>amount</cite> (int): The amount being transacted</p></li>
+<li><p><cite>callback_url</cite> (str): A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API.</p></li>
+<li><p><cite>reference_code</cite>: Account Reference: This is an Alpha-Numeric parameter that is defined by your system as an Identifier of the transaction for CustomerPayBillOnline transaction type.</p></li>
+<li><p><cite>phone_number</cite>: The Mobile Number to receive the STK Pin Prompt.</p></li>
+<li><p><cite>description</cite>: This is any additional information/comment that can be sent along with the request from your system. MAX 13 characters</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>CustomerMessage (str):</p></li>
-<li><p>CheckoutRequestID (str):</p></li>
-<li><p>ResponseDescription (str):</p></li>
-<li><p>MerchantRequestID (str):</p></li>
-<li><p>ResponseCode (str):</p></li>
+<li><p><cite>CustomerMessage</cite> (str):</p></li>
+<li><p><cite>CheckoutRequestID</cite> (str):</p></li>
+<li><p><cite>ResponseDescription</cite> (str):</p></li>
+<li><p><cite>MerchantRequestID</cite> (str):</p></li>
+<li><p><cite>ResponseCode</cite> (str):</p></li>
 </ul>
 </dd></dl>
 
@@ -289,23 +289,23 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s Transaction Reversal API to reverse a M-Pesa transaction.</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>initiator (str): Username used to authenticate the transaction.</p></li>
-<li><p>security_credential (str): Generate from developer portal</p></li>
-<li><p>command_id (str): TransactionReversal</p></li>
-<li><p>transaction_id (str): Unique identifier to identify a transaction on M-Pesa.</p></li>
-<li><p>amount (int): The amount being transacted</p></li>
-<li><p>receiver_party (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</p></li>
-<li><p>receiver_identifier_type (int): MSISDN receiving the transaction (12 digits).</p></li>
-<li><p>queue_timeout_url (str): The url that handles information of timed out transactions.</p></li>
-<li><p>result_url (str): The url that receives results from M-Pesa api call.</p></li>
-<li><p>remarks (str): Comments that are sent along with the transaction(maximum 100 characters)</p></li>
-<li><p>occassion (str):</p></li>
+<li><p><cite>initiator</cite> (str): Username used to authenticate the transaction.</p></li>
+<li><p><cite>security_credential</cite> (str): Generate from developer portal</p></li>
+<li><p><cite>command_id</cite> (str): TransactionReversal</p></li>
+<li><p><cite>transaction_id</cite> (str): Unique identifier to identify a transaction on M-Pesa.</p></li>
+<li><p><cite>amount</cite> (int): The amount being transacted</p></li>
+<li><p><cite>receiver_party</cite> (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).</p></li>
+<li><p><cite>receiver_identifier_type</cite> (int): MSISDN receiving the transaction (12 digits).</p></li>
+<li><p><cite>queue_timeout_url</cite> (str): The url that handles information of timed out transactions.</p></li>
+<li><p><cite>result_url</cite> (str): The url that receives results from M-Pesa api call.</p></li>
+<li><p><cite>remarks</cite> (str): Comments that are sent along with the transaction(maximum 100 characters)</p></li>
+<li><p><cite>occassion</cite> (str):</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>OriginatorConverstionID (str): The unique request ID for tracking a transaction.</p></li>
-<li><p>ConversationID (str): The unique request ID returned by mpesa for each request made</p></li>
-<li><p>ResponseDescription (str): Response Description message</p></li>
+<li><p><cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
 </ul>
 </dd></dl>
 
@@ -324,26 +324,26 @@ of your app’s client key and client secret.</p>
 <dd><p>This method uses Mpesa’s Transaction Status API to check the status of a transaction.</p>
 <p><strong>Args:</strong></p>
 <ul class="simple">
-<li><p>party_a (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.</p></li>
-<li><p>identifier_type (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.</p></li>
-<li><p>remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
-<li><p>initiator (str): This is the credential/username used to authenticate the transaction request.</p></li>
-<li><p>passcode (str): Get from developer portal</p></li>
-<li><p>result_url (str): The url that handles information from the mpesa API call.</p></li>
-<li><p>transaction_id (str): Unique identifier to identify a transaction on M-Pesa.</p></li>
-<li><p>queue_timeout_url (str): The url that stores information of timed out transactions.</p></li>
-<li><p>result_url (str): The url that receives results from M-Pesa api call.</p></li>
-<li><p>shortcode (int): The short code of the organization.</p></li>
-<li><p>occassion (str):</p></li>
+<li><p><cite>party_a</cite> (str): Organization/MSISDN receiving the transaction - MSISDN or shortcode.</p></li>
+<li><p><cite>identifier_type</cite> (str): Type of organization receiving the transaction 1-MSISDN. 2-Till Number, 3-Shortcode.</p></li>
+<li><p><cite>remarks</cite> (str): Comments that are sent along with the transaction(maximum 100 characters).</p></li>
+<li><p><cite>initiator</cite> (str): This is the credential/username used to authenticate the transaction request.</p></li>
+<li><p><cite>passcode</cite> (str): Get from developer portal</p></li>
+<li><p><cite>result_url</cite> (str): The url that handles information from the mpesa API call.</p></li>
+<li><p><cite>transaction_id</cite> (str): Unique identifier to identify a transaction on M-Pesa.</p></li>
+<li><p><cite>queue_timeout_url</cite> (str): The url that stores information of timed out transactions.</p></li>
+<li><p><cite>result_url</cite> (str): The url that receives results from M-Pesa api call.</p></li>
+<li><p><cite>shortcode</cite> (int): The short code of the organization.</p></li>
+<li><p><cite>occassion</cite> (str):</p></li>
 </ul>
 <p><strong>Returns:</strong></p>
 <ul class="simple">
-<li><p>ResultDesc’: ,</p></li>
-<li><p>CheckoutRequestID’: ,</p></li>
-<li><p>ResponseDescription’: ,</p></li>
-<li><p>MerchantRequestID’: ,</p></li>
-<li><p>ResponseCode’: ,</p></li>
-<li><p>ResultCode’:</p></li>
+<li><p><cite>ResultDesc</cite>: ,</p></li>
+<li><p><cite>CheckoutRequestID</cite>: ,</p></li>
+<li><p><cite>ResponseDescription</cite>: ,</p></li>
+<li><p><cite>MerchantRequestID</cite>: ,</p></li>
+<li><p><cite>ResponseCode</cite>: ,</p></li>
+<li><p><cite>ResultCode</cite>:</p></li>
 </ul>
 </dd></dl>
 

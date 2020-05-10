@@ -42,33 +42,46 @@
 
 
 <div class="viewcode-block" id="C2B"><a class="viewcode-back" href="../../api.html#api.c2b.C2B">[docs]</a><span class="k">class</span> <span class="nc">C2B</span><span class="p">(</span><span class="n">MpesaBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span> <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span>
+        <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span>
+        <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">MpesaBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">app_key</span><span class="p">,</span> <span class="n">app_secret</span><span class="p">,</span>
                            <span class="n">sandbox_url</span><span class="p">,</span> <span class="n">live_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
 
-<div class="viewcode-block" id="C2B.register"><a class="viewcode-back" href="../../api.html#api.c2b.C2B.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">response_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">confirmation_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="C2B.register"><a class="viewcode-back" href="../../api.html#api.c2b.C2B.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">response_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">confirmation_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">validation_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s C2B API to register validation and confirmation URLs on M-Pesa.</span>
 
 <span class="sd">        **Args:**</span>
 
-<span class="sd">        - shortcode (int): The short code of the organization.</span>
+<span class="sd">        - `shortcode` (int): The short code of the organization.</span>
 
-<span class="sd">        - response_type (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.</span>
+<span class="sd">        - `response_type` (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.</span>
 
-<span class="sd">        - confirmation_url (str): Confirmation URL for the client.</span>
+<span class="sd">        - `confirmation_url` (str): Confirmation URL for the client.</span>
 
-<span class="sd">        - validation_url (str): Validation URL for the client.</span>
+<span class="sd">        - `validation_url` (str): Validation URL for the client.</span>
 
 
 
 <span class="sd">        **Returns:**</span>
 
-<span class="sd">        - OriginatorConversationID (str): The unique request ID for tracking a transaction.</span>
+<span class="sd">        - `OriginatorConversationID` (str): The unique request ID for tracking a transaction.</span>
 
-<span class="sd">        - ConversationID (str): The unique request ID returned by mpesa for each request made</span>
+<span class="sd">        - `ConversationID` (str): The unique request ID returned by mpesa for each request made</span>
 
-<span class="sd">        - ResponseDescription (str): Response Description message</span>
+<span class="sd">        - `ResponseDescription` (str): Response Description message</span>
 
 
 
@@ -78,10 +91,12 @@
             <span class="s2">&quot;ShortCode&quot;</span><span class="p">:</span> <span class="n">shortcode</span><span class="p">,</span>
             <span class="s2">&quot;ResponseType&quot;</span><span class="p">:</span> <span class="n">response_type</span><span class="p">,</span>
             <span class="s2">&quot;ConfirmationURL&quot;</span><span class="p">:</span> <span class="n">confirmation_url</span><span class="p">,</span>
-            <span class="s2">&quot;ValidationURL&quot;</span><span class="p">:</span> <span class="n">validation_url</span>
+            <span class="s2">&quot;ValidationURL&quot;</span><span class="p">:</span> <span class="n">validation_url</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
             <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
         <span class="k">else</span><span class="p">:</span>
@@ -95,21 +110,28 @@
                               <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="C2B.simulate"><a class="viewcode-back" href="../../api.html#api.c2b.C2B.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">command_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">msisdn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bill_ref_number</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="C2B.simulate"><a class="viewcode-back" href="../../api.html#api.c2b.C2B.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">shortcode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">command_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">msisdn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bill_ref_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s C2B API to simulate a C2B transaction.</span>
 
 <span class="sd">        **Args:**</span>
-<span class="sd">        - shortcode (int): The short code of the organization.</span>
-<span class="sd">        - command_id (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.</span>
-<span class="sd">        - amount (int): The amount being transacted</span>
-<span class="sd">        - msisdn (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)</span>
-<span class="sd">        - bill_ref_number: Optional</span>
+<span class="sd">        - `shortcode` (int): The short code of the organization.</span>
+<span class="sd">        - `command_id` (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.</span>
+<span class="sd">        - `amount` (int): The amount being transacted</span>
+<span class="sd">        - `msisdn` (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)</span>
+<span class="sd">        - `bill_ref_number`: Optional</span>
 
 
 <span class="sd">        **Returns:**</span>
-<span class="sd">        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.</span>
-<span class="sd">        - ConversationID (str): The unique request ID returned by mpesa for each request made</span>
-<span class="sd">        - ResponseDescription (str): Response Description message</span>
+<span class="sd">        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.</span>
+<span class="sd">        - `ConversationID` (str): The unique request ID returned by mpesa for each request made</span>
+<span class="sd">        - `ResponseDescription` (str): Response Description message</span>
 
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -119,10 +141,12 @@
             <span class="s2">&quot;CommandID&quot;</span><span class="p">:</span> <span class="n">command_id</span><span class="p">,</span>
             <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
             <span class="s2">&quot;Msisdn&quot;</span><span class="p">:</span> <span class="n">msisdn</span><span class="p">,</span>
-            <span class="s2">&quot;BillRefNumber&quot;</span><span class="p">:</span> <span class="n">bill_ref_number</span>
+            <span class="s2">&quot;BillRefNumber&quot;</span><span class="p">:</span> <span class="n">bill_ref_number</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
             <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
         <span class="k">else</span><span class="p">:</span>

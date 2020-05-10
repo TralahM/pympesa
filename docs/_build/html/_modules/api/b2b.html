@@ -42,52 +42,70 @@
 
 
 <div class="viewcode-block" id="B2B"><a class="viewcode-back" href="../../api.html#api.b2b.B2B">[docs]</a><span class="k">class</span> <span class="nc">B2B</span><span class="p">(</span><span class="n">MpesaBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span> <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span>
-                 <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">env</span><span class="o">=</span><span class="s2">&quot;sandbox&quot;</span><span class="p">,</span>
+        <span class="n">app_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">app_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sandbox_url</span><span class="o">=</span><span class="s2">&quot;https://sandbox.safaricom.co.ke&quot;</span><span class="p">,</span>
+        <span class="n">live_url</span><span class="o">=</span><span class="s2">&quot;https://api.safaricom.co.ke&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">MpesaBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">app_key</span><span class="p">,</span> <span class="n">app_secret</span><span class="p">,</span>
                            <span class="n">sandbox_url</span><span class="p">,</span> <span class="n">live_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
 
-<div class="viewcode-block" id="B2B.transact"><a class="viewcode-back" href="../../api.html#api.b2b.B2B.transact">[docs]</a>    <span class="k">def</span> <span class="nf">transact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">security_credential</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">command_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sender_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">receiver_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">party_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">party_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">account_reference</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="B2B.transact"><a class="viewcode-back" href="../../api.html#api.b2b.B2B.transact">[docs]</a>    <span class="k">def</span> <span class="nf">transact</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initiator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">security_credential</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">command_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sender_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">receiver_identifier_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">party_a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">party_b</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">remarks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">account_reference</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">queue_timeout_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">result_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s B2B API to transact from one company to another.</span>
 
 <span class="sd">        **Args:**</span>
 
-<span class="sd">        - initiator (str): Username used to authenticate the transaction.</span>
+<span class="sd">        - `initiator` (str): Username used to authenticate the transaction.</span>
 
-<span class="sd">        - security_credential (str): Generate from developer portal</span>
+<span class="sd">        - `security_credential` (str): Generate from developer portal</span>
 
-<span class="sd">        - command_id (str): Options: BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility, BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer, MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance</span>
+<span class="sd">        - `command_id` (str): Options: BusinessPayBill, BusinessBuyGoods, DisburseFundsToBusiness, BusinessToBusinessTransfer ,BusinessTransferFromMMFToUtility, BusinessTransferFromUtilityToMMF, MerchantToMerchantTransfer, MerchantTransferFromMerchantToWorking, MerchantServicesMMFAccountTransfer, AgencyFloatAdvance</span>
 
-<span class="sd">        - sender_identifier_type (str): 2 for Till Number, 4 for organization shortcode</span>
+<span class="sd">        - `sender_identifier_type` (str): 2 for Till Number, 4 for organization shortcode</span>
 
-<span class="sd">        - receiver_identifier_type (str): # 2 for Till Number, 4 for organization shortcode</span>
+<span class="sd">        - `receiver_identifier_type` (str): # 2 for Till Number, 4 for organization shortcode</span>
 
-<span class="sd">        - amount(str): Amount.</span>
+<span class="sd">        - `amount` (str): Amount.</span>
 
-<span class="sd">        - party_a (int): Sender shortcode.</span>
+<span class="sd">        - `party_a` (int): Sender shortcode.</span>
 
-<span class="sd">        - party_b (int): Receiver shortcode.</span>
+<span class="sd">        - `party_b` (int): Receiver shortcode.</span>
 
-<span class="sd">        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).</span>
+<span class="sd">        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).</span>
 
-<span class="sd">        - account_reference (str): Use if doing paybill to banks etc.</span>
+<span class="sd">        - `account_reference` (str): Use if doing paybill to banks etc.</span>
 
-<span class="sd">        - queue_timeout_url (str): The url that handles information of timed out transactions.</span>
+<span class="sd">        - `queue_timeout_url` (str): The url that handles information of timed out transactions.</span>
 
-<span class="sd">        - result_url (str): The url that receives results from M-Pesa api call.</span>
+<span class="sd">        - `result_url` (str): The url that receives results from M-Pesa api call.</span>
 
 
 
 <span class="sd">        **Returns:**</span>
 
-<span class="sd">        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.</span>
+<span class="sd">        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.</span>
 
-<span class="sd">        - ConversationID (str): The unique request ID returned by mpesa for each request made</span>
+<span class="sd">        - `ConversationID` (str): The unique request ID returned by mpesa for each request made</span>
 
-<span class="sd">        - ResponseDescription (str): Response Description message</span>
+<span class="sd">        - `ResponseDescription` (str): Response Description message</span>
 
 
 
@@ -105,10 +123,12 @@
             <span class="s2">&quot;Remarks&quot;</span><span class="p">:</span> <span class="n">remarks</span><span class="p">,</span>
             <span class="s2">&quot;AccountReference&quot;</span><span class="p">:</span> <span class="n">account_reference</span><span class="p">,</span>
             <span class="s2">&quot;QueueTimeOutURL&quot;</span><span class="p">:</span> <span class="n">queue_timeout_url</span><span class="p">,</span>
-            <span class="s2">&quot;ResultURL&quot;</span><span class="p">:</span> <span class="n">result_url</span>
+            <span class="s2">&quot;ResultURL&quot;</span><span class="p">:</span> <span class="n">result_url</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">),</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
             <span class="n">base_safaricom_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">live_url</span>
         <span class="k">else</span><span class="p">:</span>
