@@ -82,17 +82,27 @@ class C2B(MpesaBase):
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
 
         **Args:**
+
         - `shortcode` (int): The short code of the organization.
+
         - `command_id` (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+
         - `amount` (int): The amount being transacted
+
         - `msisdn` (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+
         - `bill_ref_number`: Optional
 
 
+
         **Returns:**
+
         - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
+
         - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+
         - `ResponseDescription` (str): Response Description message
+
 
 
         """

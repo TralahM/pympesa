@@ -213,16 +213,20 @@ of your app’s client key and client secret.</p>
 <dt id="api.c2b.C2B.simulate">
 <code class="sig-name descname">simulate</code><span class="sig-paren">(</span><em class="sig-param">shortcode=None</em>, <em class="sig-param">command_id=None</em>, <em class="sig-param">amount=None</em>, <em class="sig-param">msisdn=None</em>, <em class="sig-param">bill_ref_number=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/api/c2b.html#C2B.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#api.c2b.C2B.simulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method uses Mpesa’s C2B API to simulate a C2B transaction.</p>
-<p><strong>Args:</strong>
-- <cite>shortcode</cite> (int): The short code of the organization.
-- <cite>command_id</cite> (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
-- <cite>amount</cite> (int): The amount being transacted
-- <cite>msisdn</cite> (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
-- <cite>bill_ref_number</cite>: Optional</p>
-<p><strong>Returns:</strong>
-- <cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.
-- <cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made
-- <cite>ResponseDescription</cite> (str): Response Description message</p>
+<p><strong>Args:</strong></p>
+<ul class="simple">
+<li><p><cite>shortcode</cite> (int): The short code of the organization.</p></li>
+<li><p><cite>command_id</cite> (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.</p></li>
+<li><p><cite>amount</cite> (int): The amount being transacted</p></li>
+<li><p><cite>msisdn</cite> (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)</p></li>
+<li><p><cite>bill_ref_number</cite>: Optional</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><cite>OriginatorConverstionID</cite> (str): The unique request ID for tracking a transaction.</p></li>
+<li><p><cite>ConversationID</cite> (str): The unique request ID returned by mpesa for each request made</p></li>
+<li><p><cite>ResponseDescription</cite> (str): Response Description message</p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>
@@ -238,16 +242,20 @@ of your app’s client key and client secret.</p>
 <dt id="api.mpesa_express.MpesaExpress.query">
 <code class="sig-name descname">query</code><span class="sig-paren">(</span><em class="sig-param">business_shortcode=None</em>, <em class="sig-param">checkout_request_id=None</em>, <em class="sig-param">passcode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/api/mpesa_express.html#MpesaExpress.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#api.mpesa_express.MpesaExpress.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method uses Mpesa’s Express API to check the status of a Lipa Na M-Pesa Online Payment..</p>
-<p><strong>Args:</strong>
-- <cite>business_shortcode</cite> (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
-- <cite>checkout_request_id</cite> (str): This is a global unique identifier of the processed checkout transaction request.
-- <cite>passcode</cite> (str): Get from developer portal</p>
-<p><strong>Returns:</strong>
-- <cite>CustomerMessage</cite> (str):
-- <cite>CheckoutRequestID</cite> (str):
-- <cite>ResponseDescription</cite> (str):
-- <cite>MerchantRequestID</cite> (str):
-- <cite>ResponseCode</cite> (str):</p>
+<p><strong>Args:</strong></p>
+<ul class="simple">
+<li><p><cite>business_shortcode</cite> (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.</p></li>
+<li><p><cite>checkout_request_id</cite> (str): This is a global unique identifier of the processed checkout transaction request.</p></li>
+<li><p><cite>passcode</cite> (str): Get from developer portal</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><cite>CustomerMessage</cite> (str):</p></li>
+<li><p><cite>CheckoutRequestID</cite> (str):</p></li>
+<li><p><cite>ResponseDescription</cite> (str):</p></li>
+<li><p><cite>MerchantRequestID</cite> (str):</p></li>
+<li><p><cite>ResponseCode</cite> (str):</p></li>
+</ul>
 </dd></dl>
 
 <dl class="method">

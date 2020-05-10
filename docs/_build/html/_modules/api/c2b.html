@@ -121,17 +121,27 @@
         <span class="sd">&quot;&quot;&quot;This method uses Mpesa&#39;s C2B API to simulate a C2B transaction.</span>
 
 <span class="sd">        **Args:**</span>
+
 <span class="sd">        - `shortcode` (int): The short code of the organization.</span>
+
 <span class="sd">        - `command_id` (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.</span>
+
 <span class="sd">        - `amount` (int): The amount being transacted</span>
+
 <span class="sd">        - `msisdn` (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)</span>
+
 <span class="sd">        - `bill_ref_number`: Optional</span>
 
 
+
 <span class="sd">        **Returns:**</span>
+
 <span class="sd">        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.</span>
+
 <span class="sd">        - `ConversationID` (str): The unique request ID returned by mpesa for each request made</span>
+
 <span class="sd">        - `ResponseDescription` (str): Response Description message</span>
+
 
 
 <span class="sd">        &quot;&quot;&quot;</span>

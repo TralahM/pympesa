@@ -107,16 +107,24 @@ class MpesaExpress(MpesaBase):
         """This method uses Mpesa's Express API to check the status of a Lipa Na M-Pesa Online Payment..
 
         **Args:**
+
         - `business_shortcode` (int): This is organizations shortcode (Paybill or Buygoods - A 5 to 6 digit account number) used to identify an organization and receive the transaction.
+
         - `checkout_request_id` (str): This is a global unique identifier of the processed checkout transaction request.
+
         - `passcode` (str): Get from developer portal
 
 
         **Returns:**
+
         - `CustomerMessage` (str):
+
         - `CheckoutRequestID` (str):
+
         - `ResponseDescription` (str):
+
         - `MerchantRequestID` (str):
+
         - `ResponseCode` (str):
 
 
