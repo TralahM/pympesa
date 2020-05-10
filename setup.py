@@ -19,7 +19,13 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'certifi', 'chardet', 'future', 'idna', 'requests',
-        'six', 'urllib3', 'pytest'
+        "certifi",
+        "chardet",
+        "future",
+        "idna",
+        "requests",
+        "six",
+        "urllib3",
+        "pytest",
     ],
 )

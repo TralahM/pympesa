@@ -5,13 +5,27 @@ import datetime
 
 
 class MpesaExpress(MpesaBase):
-    def __init__(self, env="sandbox", app_key=None, app_secret=None, sandbox_url="https://sandbox.safaricom.co.ke", live_url="https://api.safaricom.co.ke"):
-        MpesaBase.__init__(self, env, app_key, app_secret,
-                           sandbox_url, live_url)
+    def __init__(
+        self,
+        env="sandbox",
+        app_key=None,
+        app_secret=None,
+        sandbox_url="https://sandbox.safaricom.co.ke",
+        live_url="https://api.safaricom.co.ke",
+    ):
+        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
-    def stk_push(self, business_shortcode=None, passcode=None, amount=None, callback_url=None, reference_code=None,
-                 phone_number=None, description=None):
+    def stk_push(
+        self,
+        business_shortcode=None,
+        passcode=None,
+        amount=None,
+        callback_url=None,
+        reference_code=None,
+        phone_number=None,
+        description=None,
+    ):
         """This method uses Mpesa's Express API to initiate online payment on behalf of a customer..
 
         **Args:**
@@ -47,11 +61,15 @@ class MpesaExpress(MpesaBase):
 
         """
 
-        time = str(datetime.datetime.now()).split(".")[0].replace(
-            "-", "").replace(" ", "").replace(":", "")
-        password = "{0}{1}{2}".format(
-            str(business_shortcode), str(passcode), time)
-        encoded = base64.b64encode(bytes(password, encoding='utf8'))
+        time = (
+            str(datetime.datetime.now())
+            .split(".")[0]
+            .replace("-", "")
+            .replace(" ", "")
+            .replace(":", "")
+        )
+        password = "{0}{1}{2}".format(str(business_shortcode), str(passcode), time)
+        encoded = base64.b64encode(bytes(password, encoding="utf8"))
         payload = {
             "BusinessShortCode": business_shortcode,
             "Password": encoded.decode("utf-8"),
@@ -63,21 +81,23 @@ class MpesaExpress(MpesaBase):
             "PhoneNumber": int(phone_number),
             "CallBackURL": callback_url,
             "AccountReference": reference_code,
-            "TransactionDesc": description
+            "TransactionDesc": description,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
         saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/stkpush/v1/processrequest")
+            base_safaricom_url, "/mpesa/stkpush/v1/processrequest"
+        )
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()
 
     def query(self, business_shortcode=None, checkout_request_id=None, passcode=None):
@@ -99,28 +119,32 @@ class MpesaExpress(MpesaBase):
 
         """
 
-        time = str(datetime.datetime.now()).split(".")[0].replace(
-            "-", "").replace(" ", "").replace(":", "")
-        password = "{0}{1}{2}".format(
-            str(business_shortcode), str(passcode), time)
-        encoded = base64.b64encode(bytes(password, encoding='utf8'))
+        time = (
+            str(datetime.datetime.now())
+            .split(".")[0]
+            .replace("-", "")
+            .replace(" ", "")
+            .replace(":", "")
+        )
+        password = "{0}{1}{2}".format(str(business_shortcode), str(passcode), time)
+        encoded = base64.b64encode(bytes(password, encoding="utf8"))
         payload = {
             "BusinessShortCode": business_shortcode,
             "Password": encoded.decode("utf-8"),
             "Timestamp": time,
-            "CheckoutRequestID": checkout_request_id
+            "CheckoutRequestID": checkout_request_id,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/stkpushquery/v1/query")
+        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/stkpushquery/v1/query")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()

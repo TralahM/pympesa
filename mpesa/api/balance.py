@@ -3,14 +3,28 @@ from .auth import MpesaBase
 
 
 class Balance(MpesaBase):
-    def __init__(self, env="sandbox", app_key=None, app_secret=None, sandbox_url="https://sandbox.safaricom.co.ke",
-                 live_url="https://api.safaricom.co.ke"):
-        MpesaBase.__init__(self, env, app_key, app_secret,
-                           sandbox_url, live_url)
+    def __init__(
+        self,
+        env="sandbox",
+        app_key=None,
+        app_secret=None,
+        sandbox_url="https://sandbox.safaricom.co.ke",
+        live_url="https://api.safaricom.co.ke",
+    ):
+        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
-    def get_balance(self, initiator=None, security_credential=None, command_id=None, party_a=None, identifier_type=None,
-                    remarks=None, queue_timeout_url=None, result_url=None):
+    def get_balance(
+        self,
+        initiator=None,
+        security_credential=None,
+        command_id=None,
+        party_a=None,
+        identifier_type=None,
+        remarks=None,
+        queue_timeout_url=None,
+        result_url=None,
+    ):
         """This method uses Mpesa's Account Balance API to to enquire the balance on an M-Pesa BuyGoods (Till Number).
 
         **Args:**
@@ -52,19 +66,19 @@ class Balance(MpesaBase):
             "IdentifierType": identifier_type,
             "Remarks": remarks,
             "QueueTimeOutURL": queue_timeout_url,
-            "ResultURL": result_url
+            "ResultURL": result_url,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/accountbalance/v1/query")
+        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/accountbalance/v1/query")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()

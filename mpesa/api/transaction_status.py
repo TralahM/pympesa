@@ -5,14 +5,30 @@ import datetime
 
 
 class TransactionStatus(MpesaBase):
-    def __init__(self, env="sandbox", app_key=None, app_secret=None, sandbox_url="https://sandbox.safaricom.co.ke", live_url="https://api.safaricom.co.ke"):
-        MpesaBase.__init__(self, env, app_key, app_secret,
-                           sandbox_url, live_url)
+    def __init__(
+        self,
+        env="sandbox",
+        app_key=None,
+        app_secret=None,
+        sandbox_url="https://sandbox.safaricom.co.ke",
+        live_url="https://api.safaricom.co.ke",
+    ):
+        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
-    def check_transaction_status(self, party_a=None, identifier_type=None, remarks=None, initiator=None, passcode=None,
-                                 result_url=None, queue_timeout_url=None, transaction_id=None,
-                                 occassion=None, shortcode=None):
+    def check_transaction_status(
+        self,
+        party_a=None,
+        identifier_type=None,
+        remarks=None,
+        initiator=None,
+        passcode=None,
+        result_url=None,
+        queue_timeout_url=None,
+        transaction_id=None,
+        occassion=None,
+        shortcode=None,
+    ):
         """This method uses Mpesa's Transaction Status API to check the status of a transaction.
 
         **Args:**
@@ -59,10 +75,15 @@ class TransactionStatus(MpesaBase):
 
         """
 
-        time = str(datetime.datetime.now()).split(".")[0].replace(
-            "-", "").replace(" ", "").replace(":", "")
+        time = (
+            str(datetime.datetime.now())
+            .split(".")[0]
+            .replace("-", "")
+            .replace(" ", "")
+            .replace(":", "")
+        )
         password = "{0}{1}{2}".format(str(shortcode), str(passcode), time)
-        encoded = base64.b64encode(bytes(password, encoding='utf-8'))
+        encoded = base64.b64encode(bytes(password, encoding="utf-8"))
         payload = {
             "CommandID": "TransactionStatusQuery",
             "PartyA": party_a,
@@ -73,19 +94,19 @@ class TransactionStatus(MpesaBase):
             "QueueTimeOutURL": queue_timeout_url,
             "ResultURL": result_url,
             "TransactionID": transaction_id,
-            "Occasion": occassion
+            "Occasion": occassion,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/stkpushquery/v1/query")
+        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/stkpushquery/v1/query")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()

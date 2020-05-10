@@ -3,12 +3,24 @@ from .auth import MpesaBase
 
 
 class C2B(MpesaBase):
-    def __init__(self, env="sandbox", app_key=None, app_secret=None, sandbox_url="https://sandbox.safaricom.co.ke", live_url="https://api.safaricom.co.ke"):
-        MpesaBase.__init__(self, env, app_key, app_secret,
-                           sandbox_url, live_url)
+    def __init__(
+        self,
+        env="sandbox",
+        app_key=None,
+        app_secret=None,
+        sandbox_url="https://sandbox.safaricom.co.ke",
+        live_url="https://api.safaricom.co.ke",
+    ):
+        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
-    def register(self, shortcode=None, response_type=None, confirmation_url=None, validation_url=None):
+    def register(
+        self,
+        shortcode=None,
+        response_type=None,
+        confirmation_url=None,
+        validation_url=None,
+    ):
         """This method uses Mpesa's C2B API to register validation and confirmation URLs on M-Pesa.
 
         **Args:**
@@ -39,24 +51,31 @@ class C2B(MpesaBase):
             "ShortCode": shortcode,
             "ResponseType": response_type,
             "ConfirmationURL": confirmation_url,
-            "ValidationURL": validation_url
+            "ValidationURL": validation_url,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/c2b/v1/registerurl")
+        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/c2b/v1/registerurl")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()
 
-    def simulate(self, shortcode=None, command_id=None, amount=None, msisdn=None, bill_ref_number=None):
+    def simulate(
+        self,
+        shortcode=None,
+        command_id=None,
+        amount=None,
+        msisdn=None,
+        bill_ref_number=None,
+    ):
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
 
         **Args:**
@@ -80,10 +99,12 @@ class C2B(MpesaBase):
             "CommandID": command_id,
             "Amount": amount,
             "Msisdn": msisdn,
-            "BillRefNumber": bill_ref_number
+            "BillRefNumber": bill_ref_number,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
@@ -92,6 +113,5 @@ class C2B(MpesaBase):
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()

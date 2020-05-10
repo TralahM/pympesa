@@ -3,14 +3,31 @@ from .auth import MpesaBase
 
 
 class Reversal(MpesaBase):
-    def __init__(self, env="sandbox", app_key=None, app_secret=None, sandbox_url="https://sandbox.safaricom.co.ke", live_url="https://api.safaricom.co.ke"):
-        MpesaBase.__init__(self, env, app_key, app_secret,
-                           sandbox_url, live_url)
+    def __init__(
+        self,
+        env="sandbox",
+        app_key=None,
+        app_secret=None,
+        sandbox_url="https://sandbox.safaricom.co.ke",
+        live_url="https://api.safaricom.co.ke",
+    ):
+        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
-    def reverse(self, initiator=None, security_credential=None, command_id="TransactionReversal", transaction_id=None,
-                amount=None, receiver_party=None, receiver_identifier_type=None, queue_timeout_url=None,
-                result_url=None, remarks=None, occassion=None):
+    def reverse(
+        self,
+        initiator=None,
+        security_credential=None,
+        command_id="TransactionReversal",
+        transaction_id=None,
+        amount=None,
+        receiver_party=None,
+        receiver_identifier_type=None,
+        queue_timeout_url=None,
+        result_url=None,
+        remarks=None,
+        occassion=None,
+    ):
         """This method uses Mpesa's Transaction Reversal API to reverse a M-Pesa transaction.
 
         **Args:**
@@ -62,19 +79,19 @@ class Reversal(MpesaBase):
             "QueueTimeOutURL": queue_timeout_url,
             "ResultURL": result_url,
             "Remarks": remarks,
-            "Occassion": occassion
+            "Occassion": occassion,
         }
-        headers = {'Authorization': 'Bearer {0}'.format(
-            self.authentication_token), 'Content-Type': "application/json"}
+        headers = {
+            "Authorization": "Bearer {0}".format(self.authentication_token),
+            "Content-Type": "application/json",
+        }
         if self.env == "production":
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/reversal/v1/request")
+        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/reversal/v1/request")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers,
-                              json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
         return r.json()
