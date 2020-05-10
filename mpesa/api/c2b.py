@@ -11,7 +11,8 @@ class C2B(MpesaBase):
         sandbox_url="https://sandbox.safaricom.co.ke",
         live_url="https://api.safaricom.co.ke",
     ):
-        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
+        MpesaBase.__init__(self, env, app_key, app_secret,
+                           sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
     def register(
@@ -25,23 +26,23 @@ class C2B(MpesaBase):
 
         **Args:**
 
-        - shortcode (int): The short code of the organization.
+        - `shortcode` (int): The short code of the organization.
 
-        - response_type (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.
+        - `response_type` (str): Default response type for timeout. Incase a tranaction times out, Mpesa will by default Complete or Cancel the transaction.
 
-        - confirmation_url (str): Confirmation URL for the client.
+        - `confirmation_url` (str): Confirmation URL for the client.
 
-        - validation_url (str): Validation URL for the client.
+        - `validation_url` (str): Validation URL for the client.
 
 
 
         **Returns:**
 
-        - OriginatorConversationID (str): The unique request ID for tracking a transaction.
+        - `OriginatorConversationID` (str): The unique request ID for tracking a transaction.
 
-        - ConversationID (str): The unique request ID returned by mpesa for each request made
+        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - ResponseDescription (str): Response Description message
+        - `ResponseDescription` (str): Response Description message
 
 
 
@@ -61,11 +62,13 @@ class C2B(MpesaBase):
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/c2b/v1/registerurl")
+        saf_url = "{0}{1}".format(
+            base_safaricom_url, "/mpesa/c2b/v1/registerurl")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()
 
     def simulate(
@@ -79,17 +82,17 @@ class C2B(MpesaBase):
         """This method uses Mpesa's C2B API to simulate a C2B transaction.
 
         **Args:**
-        - shortcode (int): The short code of the organization.
-        - command_id (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
-        - amount (int): The amount being transacted
-        - msisdn (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
-        - bill_ref_number: Optional
+        - `shortcode` (int): The short code of the organization.
+        - `command_id` (str): Unique command for each transaction type. - CustomerPayBillOnline - CustomerBuyGoodsOnline.
+        - `amount` (int): The amount being transacted
+        - `msisdn` (int): Phone number (msisdn) initiating the transaction MSISDN(12 digits)
+        - `bill_ref_number`: Optional
 
 
         **Returns:**
-        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.
-        - ConversationID (str): The unique request ID returned by mpesa for each request made
-        - ResponseDescription (str): Response Description message
+        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
+        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
+        - `ResponseDescription` (str): Response Description message
 
 
         """
@@ -113,5 +116,6 @@ class C2B(MpesaBase):
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()

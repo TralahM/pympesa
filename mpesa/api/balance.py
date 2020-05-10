@@ -11,7 +11,8 @@ class Balance(MpesaBase):
         sandbox_url="https://sandbox.safaricom.co.ke",
         live_url="https://api.safaricom.co.ke",
     ):
-        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
+        MpesaBase.__init__(self, env, app_key, app_secret,
+                           sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
     def get_balance(
@@ -29,31 +30,31 @@ class Balance(MpesaBase):
 
         **Args:**
 
-        - initiator (str): Username used to authenticate the transaction.
+        - `initiator` (str): Username used to authenticate the transaction.
 
-        - security_credential (str): Generate from developer portal.
+        - `security_credential` (str): Generate from developer portal.
 
-        - command_id (str): AccountBalance.
+        - `command_id` (str): AccountBalance.
 
-        - party_a (int): Till number being queried.
+        - `party_a` (int): Till number being queried.
 
-        - identifier_type (int): Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code
+        - `identifier_type` (int): Type of organization receiving the transaction. Options: 1 - MSISDN 2 - Till Number  4 - Organization short code
 
-        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).
+        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
 
-        - queue_timeout_url (str): The url that handles information of timed out transactions.
+        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
 
-        - result_url (str): The url that receives results from M-Pesa api call.
+        - `result_url` (str): The url that receives results from M-Pesa api call.
 
 
 
         **Returns:**
 
-        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.
+        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - ConversationID (str): The unique request ID returned by mpesa for each request made
+        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - ResponseDescription (str): Response Description message
+        - `ResponseDescription` (str): Response Description message
 
 
         """
@@ -76,9 +77,11 @@ class Balance(MpesaBase):
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/accountbalance/v1/query")
+        saf_url = "{0}{1}".format(
+            base_safaricom_url, "/mpesa/accountbalance/v1/query")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()

@@ -26,20 +26,20 @@ class MpesaBase:
 
             **Args:**
 
-                - env (str): Current app environment. Options: sandbox, live.
+                - `env` (str): Current app environment. Options: sandbox, live.
 
-                - app_key (str): The app key obtained from the developer portal.
+                - `app_key` (str): The app key obtained from the developer portal.
 
-                - app_secret (str): The app key obtained from the developer portal.
+                - `app_secret` (str): The app key obtained from the developer portal.
 
-                - sandbox_url (str): Base Safaricom sandbox url.
+                - `sandbox_url` (str): Base Safaricom sandbox url.
 
-                - live_url (str): Base Safaricom live url.
+                - `live_url` (str): Base Safaricom live url.
 
 
             **Returns:**
 
-                - access_token (str): This token is to be used with the Bearer header for further API calls to Mpesa.
+                - `access_token` (str): This token is to be used with the Bearer header for further API calls to Mpesa.
 
             """
         if self.env == "production":
@@ -47,10 +47,12 @@ class MpesaBase:
         else:
             base_safaricom_url = self.sandbox_url
         authenticate_uri = "/oauth/v1/generate?grant_type=client_credentials"
-        authenticate_url = "{0}{1}".format(base_safaricom_url, authenticate_uri)
+        authenticate_url = "{0}{1}".format(
+            base_safaricom_url, authenticate_uri)
         try:
             r = requests.get(
-                authenticate_url, auth=HTTPBasicAuth(self.app_key, self.app_secret)
+                authenticate_url, auth=HTTPBasicAuth(
+                    self.app_key, self.app_secret)
             )
         except Exception as e:
             r = requests.get(

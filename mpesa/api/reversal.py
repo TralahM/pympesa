@@ -11,7 +11,8 @@ class Reversal(MpesaBase):
         sandbox_url="https://sandbox.safaricom.co.ke",
         live_url="https://api.safaricom.co.ke",
     ):
-        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
+        MpesaBase.__init__(self, env, app_key, app_secret,
+                           sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
     def reverse(
@@ -32,37 +33,37 @@ class Reversal(MpesaBase):
 
         **Args:**
 
-        - initiator (str): Username used to authenticate the transaction.
+        - `initiator` (str): Username used to authenticate the transaction.
 
-        - security_credential (str): Generate from developer portal
+        - `security_credential` (str): Generate from developer portal
 
-        - command_id (str): TransactionReversal
+        - `command_id` (str): TransactionReversal
 
-        - transaction_id (str): Unique identifier to identify a transaction on M-Pesa.
+        - `transaction_id` (str): Unique identifier to identify a transaction on M-Pesa.
 
-        - amount (int): The amount being transacted
+        - `amount` (int): The amount being transacted
 
-        - receiver_party (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
+        - `receiver_party` (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
 
-        - receiver_identifier_type (int): MSISDN receiving the transaction (12 digits).
+        - `receiver_identifier_type` (int): MSISDN receiving the transaction (12 digits).
 
-        - queue_timeout_url (str): The url that handles information of timed out transactions.
+        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
 
-        - result_url (str): The url that receives results from M-Pesa api call.
+        - `result_url` (str): The url that receives results from M-Pesa api call.
 
-        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters)
+        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters)
 
-        - occassion (str):
+        - `occassion` (str):
 
 
 
         **Returns:**
 
-        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.
+        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - ConversationID (str): The unique request ID returned by mpesa for each request made
+        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - ResponseDescription (str): Response Description message
+        - `ResponseDescription` (str): Response Description message
 
 
 
@@ -89,9 +90,11 @@ class Reversal(MpesaBase):
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/reversal/v1/request")
+        saf_url = "{0}{1}".format(
+            base_safaricom_url, "/mpesa/reversal/v1/request")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()

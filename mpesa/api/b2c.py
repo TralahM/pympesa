@@ -11,7 +11,8 @@ class B2C(MpesaBase):
         sandbox_url="https://sandbox.safaricom.co.ke",
         live_url="https://api.safaricom.co.ke",
     ):
-        MpesaBase.__init__(self, env, app_key, app_secret, sandbox_url, live_url)
+        MpesaBase.__init__(self, env, app_key, app_secret,
+                           sandbox_url, live_url)
         self.authentication_token = self.authenticate()
 
     def transact(
@@ -31,37 +32,37 @@ class B2C(MpesaBase):
 
         **Args:**
 
-        - initiator_name (str): Username used to authenticate the transaction.
+        - `initiator_name` (str): Username used to authenticate the transaction.
 
-        - security_credential (str): Generate from developer portal
+        - `security_credential` (str): Generate from developer portal
 
-        - command_id (str): Options: SalaryPayment, BusinessPayment, PromotionPayment
+        - `command_id` (str): Options: SalaryPayment, BusinessPayment, PromotionPayment
 
-        - amount(str): Amount.
+        - `amount`(str): Amount.
 
-        - party_a (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
+        - `party_a` (int): Organization/MSISDN making the transaction - Shortcode (6 digits) - MSISDN (12 digits).
 
-        - party_b (int): MSISDN receiving the transaction (12 digits).
+        - `party_b` (int): MSISDN receiving the transaction (12 digits).
 
-        - remarks (str): Comments that are sent along with the transaction(maximum 100 characters).
+        - `remarks` (str): Comments that are sent along with the transaction(maximum 100 characters).
 
-        - account_reference (str): Use if doing paybill to banks etc.
+        - `account_reference` (str): Use if doing paybill to banks etc.
 
-        - queue_timeout_url (str): The url that handles information of timed out transactions.
+        - `queue_timeout_url` (str): The url that handles information of timed out transactions.
 
-        - result_url (str): The url that receives results from M-Pesa api call.
+        - `result_url` (str): The url that receives results from M-Pesa api call.
 
-        - ocassion (str):
+        - `ocassion` (str):
 
 
 
         **Returns:**
 
-        - OriginatorConverstionID (str): The unique request ID for tracking a transaction.
+        - `OriginatorConverstionID` (str): The unique request ID for tracking a transaction.
 
-        - ConversationID (str): The unique request ID returned by mpesa for each request made
+        - `ConversationID` (str): The unique request ID returned by mpesa for each request made
 
-        - ResponseDescription (str): Response Description message
+        - `ResponseDescription` (str): Response Description message
 
 
 
@@ -87,9 +88,11 @@ class B2C(MpesaBase):
             base_safaricom_url = self.live_url
         else:
             base_safaricom_url = self.sandbox_url
-        saf_url = "{0}{1}".format(base_safaricom_url, "/mpesa/b2c/v1/paymentrequest")
+        saf_url = "{0}{1}".format(
+            base_safaricom_url, "/mpesa/b2c/v1/paymentrequest")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
-            r = requests.post(saf_url, headers=headers, json=payload, verify=False)
+            r = requests.post(saf_url, headers=headers,
+                              json=payload, verify=False)
         return r.json()
