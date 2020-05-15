@@ -14,6 +14,7 @@
 #
 import os
 import sys
+import sphinx_rtd_theme
 
 sys.path.insert(0, os.path.abspath("../mpesa/api/"))
 sys.path.insert(0, os.path.abspath("../mpesa/"))
@@ -26,9 +27,9 @@ copyright = u"2019, Tralah M Brian"
 author = u"Tralah M Brian"
 
 # The short X.Y version
-version = u"1.1"
+version = u"2.0"
 # The full version, including alpha/beta/rc tags
-release = u"1.0 stable"
+release = u"2.0 stable"
 
 
 # -- General configuration ---------------------------------------------------
@@ -47,6 +48,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx.ext.autosummary",
+    "sphinx_rtd_theme",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -86,7 +88,7 @@ show_authors = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "classic"
+html_theme = "sphinx_rtd_theme"
 rigtsidebar = True
 stickysidebar = True
 
