@@ -1,4 +1,6 @@
 
+# Dolphin
+.directory
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -41,6 +43,7 @@ htmlcov/
 .tox/
 .coverage
 .coverage.*
+nohup.out
 .cache
 nosetests.xml
 coverage.xml
@@ -106,3 +109,14 @@ env/
 .idea/
 
 .*~
+
+# Jekyll Documentation
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache/*
+.jekyll-cache/*
+
+# nohup.out files
+*.out
+stime
