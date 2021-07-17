@@ -106,7 +106,7 @@ class TransactionStatus(MpesaBase):
         else:
             base_safaricom_url = self.sandbox_url
         saf_url = "{0}{1}".format(
-            base_safaricom_url, "/mpesa/stkpushquery/v1/query")
+            base_safaricom_url, "/mpesa/transactionstatus/v1/query")
         try:
             r = requests.post(saf_url, headers=headers, json=payload)
         except Exception as e:
